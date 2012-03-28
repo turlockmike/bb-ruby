@@ -286,7 +286,10 @@ module BBRuby
         text.gsub!( '"', '&quot;' )
         text.gsub!( "'", '&apos;' )
       end
-      
+      text.gsub!(/\[quote\]/, '<fieldset><legend>Quote:</legend><blockquote>')
+      text.gsub!(/\[quote(:.*)?="?(.*?)"?\]/, '<fieldset><legend>Quote: \2</legend><blockquote>')
+      text.gsub!(/\[\/quote\]/, '</blockquote></fieldset><br />')
+
       tags_definition = @@tags.merge(tags_alternative_definition)
 
       # parse bbcode tags
